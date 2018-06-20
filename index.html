@@ -14,9 +14,20 @@
 
 <body>
 
-    <h1>Mongo db</h1>
-    <p id="myp"></p>
+    <header class="container">
+        <h1>Mongo db</h1>
+        <p id="myp"></p>
 
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="input2">
+            </div>
+        </form>
+        <button id='button' class="btn btn-primary">Submit</button>
+    </header>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -32,17 +43,36 @@
         $(document).ready(function () {
 
             $.ajax({
-                url: 'http://localhost:3044/affiche',
+                url: 'http://localhost:3043/affiche',
                 method: "GET",
                 success: function (data) {
+
                     console.log(data);
                     console.log(data[0].name)
                     $('#myp').append("name : " + data[0].name);
 
                 }
             })
-        })
+       
 
+//A REVOIR
+        $('document').ready(function () {
+
+            var val1 = $('#input1').val();
+            var val2 = $('#input2').val();
+
+            $.ajax({
+                url: 'http://localhost:3043/ajoute',
+                method: "POST",
+                data: { donnee1: val1, donnee2: val2 },
+                success: function (data) {
+
+                    console.log(data);
+
+                }
+            })
+        })
+    })
 
 
     </script>
